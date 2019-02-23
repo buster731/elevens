@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -53,18 +52,17 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void perfectShuffle(int[] values) {
-		ArrayList<Object> shuffled = new ArrayList<Object>(52);
+		int[] shuffled = new int[values.length];
 		int k = 0;
 		for(int j = 0; j < (values.length) / 2; j++) {
-			shuffled.set(k, values[j]);
+			shuffled[k] = values[j];
 			k += 2;
 		}
 		k = 1;
 		for(int j = (values.length) / 2; j < values.length; j++) {
-			shuffled.set(k, values[j]);
+			shuffled[k] = values[j];
 			k += 2;
 		}
-		
 	}
 
 	/**
@@ -79,20 +77,16 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void selectionShuffle(int[] values) {
-		ArrayList<Object> shuffled = new ArrayList<Object>(52);
-		for(int k = 0; k < 52; k++) {
-			boolean place = false;
-			while(place == false) {	
-				int j = 0;
-				if(shuffled.indexOf(j) ==  - 1) {	
-					shuffled.set(k, values[j]);
-					place = true;
-				}
-				else{
-					j = (int)(Math.random()) * 52;
-				}
-				
+		int[] shuffled = new int[values.length];
+		int count = values.length;
+		while(count > 0) {	
+			int j = (int)(Math.random()) * (values.length);
+			if(values[j] !=  -1) {	
+				shuffled[values.length - count] = values[j];
+				values[j] = -1;
+				count--;
 			}
 		}
 	}
 }
+
