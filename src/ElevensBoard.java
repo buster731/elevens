@@ -114,16 +114,20 @@ public class ElevensBoard extends Board {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		String k = cardAt(selectedCards.get(2)).rank();
-		String l = cardAt(selectedCards.get(2)).rank();
-		String m = cardAt(selectedCards.get(2)).rank();
-		if(k.equals("jack") || l.equals("jack") || m.equals("jack")) {
-			if(k == "queen" || l.equals("queen") || m.equals("queen")) {
-				if(k.equals("king") || l.equals("king") ||m.equals("king")) {
-					return true;
-				}
+		boolean foundj = false;
+		boolean foundq = false;
+		boolean foundk = false;
+		for(int i = 0; i < selectedCards.size(); i++) {
+			if(cardAt(selectedCards.get(i)).rank() == "jack") {
+				foundj = true;
+			}
+			if(cardAt(selectedCards.get(i)).rank() == "queen") {
+				foundq = true;
+			}
+			if(cardAt(selectedCards.get(i)).rank() == "king") {
+				foundk = true;
 			}
 		}
-		return false;
+		return (foundj && foundq && foundk) ? true :false;
 	}
 }

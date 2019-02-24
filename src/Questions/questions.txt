@@ -1,2 +1,0 @@
-1) Deck is a list of objects of the Card type. A card is a specific instance of the Card Class, which has the rank, suit, and point value of the instance.
-2) 
